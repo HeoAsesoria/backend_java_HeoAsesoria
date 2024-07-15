@@ -22,9 +22,10 @@ public class Contratos {
     private String urlContrato;
     private Date fechaCreacion;
     private String tipoContrato;
-    private  String nombre_cliente;
-    private String  dni_cliente;
+    private String nombre_cliente;
+    private String dni_cliente;
     private String tipo_documento_cliente;
     private String tipo_moneda;
     private boolean estado;
+    private Integer id_sucursal;
 }

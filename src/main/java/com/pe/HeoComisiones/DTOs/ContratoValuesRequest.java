@@ -1,18 +1,19 @@
 package com.pe.HeoComisiones.DTOs;
 
-
 import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//!ES PROBABLE QUE QUIERAS CAMBIAR EL TIPO DE DATO DE ALGUNOS ATRIBUTOS PERO TEN EN CUENTA QUE ESTAMOS PASANDO
-//ESTOS ATRIBUTOS A UN SCRIPT DE PYTHON EL CUAL ESPERA UN STRING Y NO UN INTEGER O UN DOUBLE
+// !ES PROBABLE QUE QUIERAS CAMBIAR EL TIPO DE DATO DE ALGUNOS ATRIBUTOS PERO
+// TEN EN CUENTA QUE ESTAMOS PASANDO
+// ESTOS ATRIBUTOS A UN SCRIPT DE PYTHON EL CUAL ESPERA UN STRING Y NO UN
+// INTEGER O UN DOUBLE
 public class ContratoValuesRequest {
     private String idusuario;
     private String mes_cabecera;
-    private  String anio_cabecera;
+    private String anio_cabecera;
     private String nombre_cliente;
     private String numerodocumento_cliente;
     private String tipodocumento_cliente;
@@ -28,11 +29,11 @@ public class ContratoValuesRequest {
     private String capital_cliente;
     private String cuenta_heo;
     private String banco_heo;
-    //lA UTILIDAD SERA CONVERTIDO EN LETRAS EN EL SCRIPT DE PYTHON
+    // lA UTILIDAD SERA CONVERTIDO EN LETRAS EN EL SCRIPT DE PYTHON
     private String utilidad_cliente;
     private String cuenta_cliente;
     private String banco_cliente;
-    //para elegirar la abreviatura del cliente
+    // para elegirar la abreviatura del cliente
     private String genero_cliente;
     private String vigencia_contrato;
     private String fecha_inicio_contrato;
@@ -44,6 +45,7 @@ public class ContratoValuesRequest {
     private String tipodecontrato;
     private String tipo_cuenta_cliente;
     private String origen_fondos_cliente;
-    //tipo de moneda DOLARES O SOLES
+    // tipo de moneda DOLARES O SOLES
     private String tipo_moneda;
+    private String id_sucursal;
 }

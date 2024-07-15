@@ -1,6 +1,5 @@
 package com.pe.HeoComisiones.Request;
 
-
 import lombok.*;
 
 @Data
@@ -73,4 +72,5 @@ public class ContratoValuesRequest {
     private String cronograma;
     @NonNull
     private String tipodecontrato;
+    private Integer id_sucursal;
 }
