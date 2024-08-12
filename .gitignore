@@ -38,4 +38,5 @@ build/
 /src/main/resources/prueba.txt
 ####Docker####
 docker-compose.yml
+.env
 

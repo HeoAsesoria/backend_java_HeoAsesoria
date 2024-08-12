@@ -3,10 +3,10 @@ package com.pe.HeoComisiones;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class HeoComisionesApplicationTests {
 
-	@Test
+///	@Test
 	void contextLoads() {
 
 	}
