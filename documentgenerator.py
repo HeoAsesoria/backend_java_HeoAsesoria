@@ -44,6 +44,7 @@ tipodecontrato = sys.argv[30]
 tipo_cuenta_cliente = sys.argv[31]
 origen_fondos_cliente = sys.argv[32]
 tipo_moneda = sys.argv[33]
+sucursal=sys.argv[34]
 
 
 def cantidad_en_letras(monto, moneda=tipo_moneda):
@@ -133,6 +134,7 @@ try:
             'TIPODECUENTA': tipo_cuenta_cliente,
             'ORIGENFONDOS': origen_fondos_cliente,
             'IMG': imagen,
+            "SUCURSAL":sucursal
         }
         template.render(context)
         try:

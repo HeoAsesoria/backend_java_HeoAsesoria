@@ -1,5 +1,20 @@
 package com.pe.HeoComisiones.Services.impl.admin;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import com.pe.HeoComisiones.DTOs.ContratoValuesRequest;
 import com.pe.HeoComisiones.Entity.Contratos;
 import com.pe.HeoComisiones.Entity.Usuarios;
@@ -8,13 +23,9 @@ import com.pe.HeoComisiones.Repository.ContratotoDbRepository;
 import com.pe.HeoComisiones.Services.admin.AdminContratoGenerateService;
 import com.pe.HeoComisiones.Services.common.CommonUsuarioService;
 import com.pe.HeoComisiones.Utils.Cloudinary.CloudService;
+
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.io.*;
-import java.sql.Timestamp;
-import java.util.*;
 
 
 // TODO: 2/01/2024 falta obtencion del contador de parte de la base de datos
@@ -50,7 +61,7 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
                 contratoValuesRequest.getNombre_cliente(),
                 contratoValuesRequest.getNumerodocumento_cliente(),
                 contratoValuesRequest.getTipodocumento_cliente(),
-                contratoValuesRequest.getTipo_moneda());
+                contratoValuesRequest.getTipo_moneda(),Integer.valueOf(contratoValuesRequest.getId_sucursal()));
         //DECLARAR EL MAPA
         Map<String,Object> response =new HashMap<>();
         //AGREGAR LOS VALORES AL MAPA
@@ -98,7 +109,10 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
                 contratoValuesRequest.getOrigen_fondos_cliente(),
                 contratoValuesRequest.getTipo_moneda() != null && !contratoValuesRequest.getTipo_moneda().isEmpty()
                         ? contratoValuesRequest.getTipo_moneda()
-                        : "SOLES"
+                        : "SOLES",
+                        contratoValuesRequest.getId_sucursal()=="1"?"TP"
+                        : "LM"
+
         );
     }
     private String exucuteScript(List<String> command) throws IOException, InterruptedException {
@@ -154,7 +168,7 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
                                         String nombre_cliente,
                                         String dni_cliente,
                                         String tipo_documento_cliente,
-                                        String tipo_moneda){
+                                        String tipo_moneda,Integer id_sucursal){
         Usuarios user = commonUsuarioService.verifyUsuarioExistsById(idusuario);
         Contratos contratos = new Contratos();
         contratos.setUsuarios(user);
@@ -168,6 +182,7 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
         contratos.setDni_cliente(dni_cliente);
         contratos.setTipo_documento_cliente(tipo_documento_cliente.toUpperCase());
         contratos.setTipo_moneda(tipo_moneda.toUpperCase());
+        contratos.setId_sucursal(id_sucursal);
         contratotoDbRepository.save(contratos);
     }
     private Integer obtenerNumeroDeContrato(Integer idusuario){
